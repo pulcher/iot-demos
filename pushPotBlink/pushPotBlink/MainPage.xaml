@@ -1,0 +1,19 @@
+﻿<Page
+    x:Class="pushPotBlink.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:pushPotBlink"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Ellipse x:Name="LedButton" Fill="LightGray" Stroke="White" Width="100" Height="100" Margin="10"/>
+            <TextBlock x:Name="ButtonStatus" Text="--" Margin="10,10,10,10" TextAlignment="Center" FontSize="28" />
+            <Ellipse x:Name="LedBlink" Fill="LightGray" Stroke="White" Width="100" Height="100" Margin="10"/>
+            <TextBlock x:Name="PotSetting" Text="--" Margin="10,10,10,10" TextAlignment="Center" FontSize="28" />
+            <TextBlock x:Name="GpioStatus" Text="Waiting to initialize GPIO..." Margin="10,50,10,10" TextAlignment="Center" FontSize="26.667" />
+        </StackPanel>
+    </Grid>
+</Page>
