@@ -17,7 +17,6 @@ namespace pushPotBlink
         private const int BUTTON_PIN = 6;
         private const int LED_BLINK_PIN = 5;
         private const byte MCP3002_CONFIG = 0x68; /* 01101000 channel configuration data for the MCP3002 */
-        private int currentBlinkRate = 500;
         private GpioPin ledButtonPin;
         private GpioPin buttonPin;
         private GpioPin ledBlinkPin;
@@ -35,8 +34,6 @@ namespace pushPotBlink
         public MainPage()
         {
             this.InitializeComponent();
-
-
 
             InitAll();
         }
@@ -57,11 +54,27 @@ namespace pushPotBlink
 
         private void FlipLed(GpioPin led)
         {
+            if (adcValue == 0)
+            {
+                turnOnLed(led);
+                return;
+            }
             if (led.Read() == GpioPinValue.High)
-                led.Write(GpioPinValue.Low);
+                turnOnLed(led);
             else
-                led.Write(GpioPinValue.High);
+                turnOffLed(led);
         }
+
+        private void turnOnLed(GpioPin led)
+        {
+            led.Write(GpioPinValue.Low);
+        }
+
+        private void turnOffLed(GpioPin led)
+        {
+            led.Write(GpioPinValue.High);
+        }
+
 
         private async Task InitAll()
         {
@@ -177,8 +190,7 @@ namespace pushPotBlink
 
         private void PotTimer_Tick(object state)
         {
-            ReadADC();
-            
+            ReadADC();         
         }
 
         public void ReadADC()
